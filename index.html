@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Tanvir Hasan Shovon</title>
+<meta name="author" content="Tanvir Hasan Shovon">
+<meta name="description" content="Research Assistant at FAST-Lab, Tampere University. Efficient transformer inference, quantization, and multimodal robotics.">
+<meta property="og:title" content="Tanvir Hasan Shovon">
+<meta property="og:description" content="Research Assistant at FAST-Lab, Tampere University.">
+<meta property="og:url" content="https://hasanshovon.github.io/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ── theme ──────────────────────────────────────────────
+   Change --accent to recolour the whole site.            */
+:root{
+  --accent:#1B3A5C;
+  --bg:#ffffff;
+  --text:#1c1c1c;
+  --text-soft:#6b6b6b;
+  --rule:#e2e5e8;
+  --hover:#f3f5f7;
+  --code:#f4f4f6;
+}
+html[data-theme="dark"]{
+  --accent:#8FB4DA;
+  --bg:#1c1c1d;
+  --text:#e8e8e8;
+  --text-soft:#9a9a9a;
+  --rule:#333;
+  --hover:#26292d;
+  --code:#2a2a2c;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Roboto",-apple-system,sans-serif;
+  font-weight:300;
+  font-size:1rem;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+/* inline links inside running text: bold, same colour as the text */
+.bio a,.subtitle a,.news a{
+  color:var(--text);
+  font-weight:500;
+  text-decoration:underline;
+  text-decoration-color:var(--rule);
+  text-decoration-thickness:1px;
+  text-underline-offset:3px;
+}
+.bio a:hover,.subtitle a:hover,.news a:hover{
+  text-decoration-color:var(--text-soft);
+}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+.container{max-width:920px;margin:0 auto;padding:0 22px;}
+
+/* ── navbar ── */
+.nav{
+  position:sticky;top:0;z-index:20;
+  background:var(--bg);
+  border-bottom:1px solid var(--rule);
+}
+.nav-inner{
+  max-width:920px;margin:0 auto;padding:14px 22px;
+  display:flex;align-items:center;gap:14px;
+}
+.brand{
+  font-family:"Roboto Slab",serif;
+  font-weight:700;font-size:1.1rem;
+  color:var(--text);
+}
+.brand:hover{text-decoration:none;color:var(--accent);}
+.nav-links{margin-left:auto;display:flex;align-items:center;gap:22px;}
+.nav-links a{
+  color:var(--text-soft);
+  font-size:.95rem;
+}
+.nav-links a:hover,.nav-links a.on{color:var(--accent);text-decoration:none;}
+.theme-btn{
+  background:none;border:0;cursor:pointer;padding:2px 4px;
+  color:var(--text-soft);font-size:1.05rem;line-height:1;
+}
+.theme-btn:hover{color:var(--accent);}
+.menu-btn{display:none;background:none;border:1px solid var(--rule);border-radius:4px;
+  cursor:pointer;color:var(--text-soft);padding:4px 9px;font-size:1rem;}
+
+/* ── header ── */
+header{padding:56px 0 20px;}
+h1.name{
+  font-family:"Roboto Slab",serif;
+  font-weight:700;
+  font-size:2.6rem;
+  line-height:1.15;
+  margin:0 0 6px;
+  letter-spacing:-.5px;
+}
+.subtitle{color:var(--text-soft);font-size:1.05rem;margin:0 0 34px;}
+.subtitle a{color:var(--text-soft);text-decoration:underline;text-underline-offset:3px;}
+
+
+.about{display:flex;gap:42px;align-items:flex-start;flex-wrap:wrap;}
+.about .bio{flex:1 1 380px;min-width:0;}
+.about .bio p{margin:0 0 16px;}
+.about .bio p:last-child{margin-bottom:0;}
+.photo{flex:0 0 260px;max-width:260px;}
+.photo img{width:100%;height:auto;border-radius:6px;display:block;}
+.photo .cap{font-size:.8rem;color:var(--text-soft);margin-top:8px;}
+
+/* ── social row ── */
+.social{
+  margin:38px 0 0;
+  display:flex;flex-wrap:wrap;gap:20px;
+  padding-top:22px;border-top:1px solid var(--rule);
+  font-size:.95rem;
+}
+.social a{color:var(--text-soft);}
+.social a:hover{color:var(--accent);text-decoration:none;}
+
+/* ── sections ── */
+section{padding-top:52px;scroll-margin-top:70px;}
+h2.sec{
+  font-family:"Roboto Slab",serif;
+  font-weight:700;font-size:1.5rem;
+  margin:0 0 18px;
+}
+h3.year{
+  font-family:"Roboto Slab",serif;
+  font-weight:500;font-size:1.15rem;
+  color:var(--text-soft);
+  margin:26px 0 12px;
+}
+
+/* ── news table ── */
+table.news{width:100%;border-collapse:collapse;font-size:.95rem;}
+table.news td{padding:9px 0;border-bottom:1px solid var(--rule);vertical-align:top;}
+table.news tr:last-child td{border-bottom:0;}
+table.news td.d{
+  width:120px;color:var(--text-soft);white-space:nowrap;padding-right:18px;
+  font-variant-numeric:tabular-nums;
+}
+table.news strong{font-weight:500;color:var(--text);}
+
+/* ── publications ── */
+.pub{
+  display:flex;gap:24px;align-items:flex-start;
+  padding:18px 14px 18px 0;border-radius:6px;
+}
+.pub:hover{background:var(--hover);}
+.badge{
+  flex:0 0 104px;
+  display:flex;align-items:center;justify-content:center;
+  min-height:56px;
+  border:1px solid var(--rule);border-radius:5px;
+  font-family:"Roboto Slab",serif;font-weight:500;font-size:.85rem;
+  color:var(--text);text-align:center;padding:8px 6px;line-height:1.25;
+  background:var(--hover);
+}
+.pub-body{flex:1 1 auto;min-width:0;}
+.pub-title{
+  font-family:"Roboto Slab",serif;font-weight:500;
+  font-size:1.05rem;line-height:1.4;margin:0 0 4px;
+}
+.pub-title a{color:var(--text);}
+.pub-title a:hover{color:var(--accent);text-decoration:none;}
+.authors{font-size:.93rem;color:var(--text-soft);margin:0 0 3px;}
+.authors em{font-style:normal;font-weight:500;color:var(--text);}
+.where{font-size:.9rem;color:var(--text-soft);font-style:italic;margin:0 0 10px;}
+.links{display:flex;flex-wrap:wrap;gap:8px;}
+.links a{
+  font-size:.78rem;letter-spacing:.4px;
+  border:1px solid var(--text-soft);border-radius:4px;
+  padding:2px 9px;color:var(--text);
+}
+.links a:hover{background:var(--text);color:var(--bg);border-color:var(--text);text-decoration:none;}
+
+.note{font-size:.85rem;color:var(--text-soft);margin:14px 0 0;}
+
+/* ── plain list blocks ── */
+.block{padding:14px 0;border-bottom:1px solid var(--rule);}
+.block:last-child{border-bottom:0;}
+.block h4{
+  font-family:"Roboto Slab",serif;font-weight:500;
+  font-size:1.02rem;margin:0 0 3px;
+}
+.block .meta{font-size:.88rem;color:var(--text-soft);margin:0 0 6px;}
+.block p{margin:0;font-size:.95rem;}
+
+footer{
+  margin-top:64px;padding:22px 0 40px;
+  border-top:1px solid var(--rule);
+  text-align:center;font-size:.85rem;color:var(--text-soft);
+}
+
+@media (max-width:760px){
+  .nav-links{
+    display:none;position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;align-items:flex-start;gap:0;
+    background:var(--bg);border-bottom:1px solid var(--rule);padding:8px 22px 14px;
+  }
+  .nav-links.open{display:flex;}
+  .nav-links a{padding:8px 0;}
+  .menu-btn{display:block;margin-left:auto;}
+  .theme-btn{order:3;}
+  h1.name{font-size:2.05rem;}
+  .about{flex-direction:column-reverse;gap:26px;}
+  .photo{flex:1 1 auto;max-width:220px;}
+  .pub{flex-direction:column;gap:12px;}
+  .badge{flex:0 0 auto;align-self:flex-start;min-height:0;padding:5px 12px;}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">Tanvir Hasan Shovon</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#about" class="on">About</a>
+      <a href="#news">News</a>
+      <a href="#publications">Publications</a>
+      <a href="#research">Research</a>
+      <a href="#experience">Experience</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">&#9789;</button>
+    </div>
+  </div>
+</nav>
+
+<div class="container" id="top">
+
+  <header id="about">
+    <h1 class="name">Tanvir Hasan Shovon</h1>
+    <p class="subtitle">
+      Research Assistant at
+      <a href="https://www.tuni.fi/en">Tampere University</a>
+    </p>
+
+    <div class="about">
+      <div class="bio">
+        <p>
+          Hello! I&rsquo;m <strong>Tanvir</strong>, a Research Assistant at
+          <a href="https://www.tuni.fi/en">FAST-Lab, Tampere University</a>, where I work
+          with <a href="https://www.tuni.fi/en">Prof. Jos&eacute; Mart&iacute;nez Lastra</a>
+          on transformer models for robotic manipulation. I completed my M.Sc. in Signal
+          Processing and Machine Learning at Tampere University, and my B.Sc. in Electronics
+          and Communication Engineering at
+          <a href="https://kuet.ac.bd/">KUET</a>, Bangladesh.
+        </p>
+        <p>
+          My research focuses on <strong>efficient inference for large models</strong>,
+          <strong>post-training quantization</strong>, <strong>interpretability</strong>,
+          and <strong>multimodal perception for robotics</strong>. I am interested in why
+          the cost of a model is distributed so unevenly across its layers &mdash; and in
+          what that unevenness lets us take away without losing accuracy.
+        </p>
+        <p>
+          I am currently applying for <strong>fully funded PhD positions starting Fall
+          2027</strong>. Feel free to reach out.
+        </p>
+        <p class="note">*Bold indicates first authorship.</p>
+      </div>
+
+      <!-- TODO: replace with a proper photo, e.g. assets/profile.jpg -->
+      <div class="photo">
+        <img src="https://github.com/Hasanshovon.png" alt="Tanvir Hasan Shovon">
+        <p class="cap">Tampere, Finland</p>
+      </div>
+    </div>
+
+    <div class="social">
+      <a href="cv.pdf">CV</a>
+      <a href="mailto:tanvir.shovon@tuni.fi">Email</a>
+      <a href="https://github.com/Hasanshovon">GitHub</a>
+      <a href="https://www.linkedin.com/in/tanvir-hasan-shovon">LinkedIn</a>
+      <!-- TODO: create a Google Scholar profile and link it here -->
+      <a href="#">Google Scholar</a>
+    </div>
+  </header>
+
+  <!-- ══ NEWS ══ -->
+  <section id="news">
+    <h2 class="sec">News</h2>
+    <!-- TODO: fix the exact months; keep the newest item at the top -->
+    <table class="news">
+      <tr>
+        <td class="d">Aug 2026</td>
+        <td>Two manuscripts in preparation, on <strong>quantization budget
+        reallocation</strong> and <strong>sparse-autoencoder faithfulness detection</strong>.</td>
+      </tr>
+      <tr>
+        <td class="d">2026</td>
+        <td>Journal manuscript on transformer-based visuo-tactile slip detection is
+        <strong>under review</strong>.</td>
+      </tr>
+      <tr>
+        <td class="d">2025</td>
+        <td>Completed my <strong>M.Sc.</strong> in Signal Processing and Machine Learning
+        at Tampere University (thesis graded 5/5).</td>
+      </tr>
+      <tr>
+        <td class="d">Mar 2025</td>
+        <td>Joined <strong>FAST-Lab</strong>, Tampere University as a Research Assistant.</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- ══ PUBLICATIONS ══ -->
+  <section id="publications">
+    <h2 class="sec">Publications</h2>
+
+    <h3 class="year">In preparation</h3>
+
+    <div class="pub">
+      <div class="badge">In prep</div>
+      <div class="pub-body">
+        <p class="pub-title">Sensitivity-aware quantization budget reallocation for
+        sparse-quantized transformers</p>
+        <p class="authors"><em>Tanvir Hasan Shovon</em></p>
+        <p class="where">Manuscript in preparation, 2026</p>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="badge">In prep</div>
+      <div class="pub-body">
+        <p class="pub-title">Energy-guided layer localization for sparse autoencoder-based
+        faithfulness detection</p>
+        <p class="authors"><em>Tanvir Hasan Shovon</em></p>
+        <p class="where">Manuscript in preparation, 2026</p>
+      </div>
+    </div>
+
+    <h3 class="year">Under review</h3>
+
+    <div class="pub">
+      <div class="badge">Under<br>review</div>
+      <div class="pub-body">
+        <p class="pub-title">Transformer-based multimodal visuo-tactile slip detection for
+        robotic manipulation</p>
+        <p class="authors"><em>Tanvir Hasan Shovon</em>, et al.</p>
+        <p class="where">Journal manuscript under review, 2026</p>
+      </div>
+    </div>
+
+    <h3 class="year">2019</h3>
+
+    <div class="pub">
+      <div class="badge">ICAEE</div>
+      <div class="pub-body">
+        <p class="pub-title">
+          <a href="https://doi.org/10.1109/ICAEE48663.2019.8975578">Classification of Motor
+          Imagery EEG Signals with Multi-input Convolutional Neural Network by Augmenting
+          STFT</a>
+        </p>
+        <p class="authors"><em>Tanvir Hasan Shovon</em>, Zabir Al Nazi, Shovon Dash,
+        Md. Foisal Hossain</p>
+        <p class="where">5th International Conference on Advances in Electrical Engineering
+        (ICAEE), IEEE, 2019, pp. 398&ndash;403</p>
+        <div class="links">
+          <a href="https://doi.org/10.1109/ICAEE48663.2019.8975578">DOI</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ RESEARCH ══ -->
+  <section id="research">
+    <h2 class="sec">Research</h2>
+
+    <div class="block">
+      <h4>Sensitivity-aware quantization budget allocation</h4>
+      <p class="meta">LLaMA-2/3 &middot; Mistral &middot; OPT</p>
+      <p>
+        Post-training quantization usually applies one recipe uniformly across a network,
+        but weight sensitivity varies sharply with layer depth and role. This work
+        reallocates base precision, group size and outlier rate per layer under a fixed
+        average bit-width &mdash; the same budget, spent where it buys accuracy.
+      </p>
+    </div>
+
+    <div class="block">
+      <h4>Attention efficiency study</h4>
+      <p class="meta">GQA &middot; MQA &middot; MLA &middot; TPA &middot; Qwen / Llama</p>
+      <p>
+        A systematic comparison of attention variants benchmarked together with
+        post-training quantization across small open models, in one harness where the
+        accuracy&ndash;latency&ndash;memory trade-off is actually comparable.
+      </p>
+    </div>
+
+    <div class="block">
+      <h4>Multimodal visuo-tactile slip detection</h4>
+      <p class="meta">ViViT + TimeSformer &middot; ABB manipulator &middot; RealSense D405</p>
+      <p>
+        A hybrid dual-backbone architecture fusing RGB and tactile streams to classify slip
+        during grasping, driving graded grip corrections in a closed loop at 13&ndash;15 ms
+        per window. M.Sc. thesis work, now under journal review.
+      </p>
+    </div>
+
+    <div class="block">
+      <h4>Diffusion-based real image editing</h4>
+      <p>
+        Null-text inversion with Delta Denoising Score guidance for text-driven editing of
+        real images, studying how inversion fidelity constrains edit quality.
+      </p>
+    </div>
+
+    <div class="block">
+      <h4>WinterNav-RUGD</h4>
+      <p>
+        Safety-oriented traversability mapping for small autonomous ground vehicles in
+        winter conditions.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══ EXPERIENCE ══ -->
+  <section id="experience">
+    <h2 class="sec">Experience &amp; Education</h2>
+
+    <div class="block">
+      <h4>Research Assistant &mdash; FAST-Lab, Tampere University</h4>
+      <p class="meta">March 2025 &ndash; present &middot; with Prof. Jos&eacute; Mart&iacute;nez Lastra</p>
+      <p>Transformer-based models for deformable object manipulation in smart
+      manufacturing; designed the dual-backbone TimeSformer&ndash;ViViT architecture for
+      visuo-tactile slip detection.</p>
+    </div>
+
+    <div class="block">
+      <h4>Teaching Assistant &mdash; Computer Vision Research Group, Tampere University</h4>
+      <p class="meta">January &ndash; February 2025</p>
+      <p>Ran exercise sessions and solutions, supervised exams, coordinated other teaching
+      assistants.</p>
+    </div>
+
+    <div class="block">
+      <h4>Teaching Assistant &mdash; Audio Research Group, Tampere University</h4>
+      <p class="meta">October &ndash; December 2024</p>
+      <p>Ran exercise sessions and solutions, supervised exams, coordinated other teaching
+      assistants.</p>
+    </div>
+
+    <div class="block">
+      <h4>Research Assistant &mdash; Computer Vision Group, Tampere University</h4>
+      <p class="meta">June &ndash; August 2024 &middot; with Prof. Joni K&auml;m&auml;r&auml;inen</p>
+      <p>Real-time multi-camera 6D pose estimation and localization for tracking objects
+      and UAVs in dynamic environments.</p>
+    </div>
+
+    <div class="block">
+      <h4>Research Assistant &mdash; Signal Processing and Machine Learning Group, KUET</h4>
+      <p class="meta">August 2021 &ndash; 2022 &middot; Khulna, Bangladesh</p>
+      <p>Deep learning pipelines for medical image and biosignal analysis: VGG16 transfer
+      learning for breast ultrasound cancer classification, and a multi-input CNN with
+      STFT-based augmentation for motor-imagery EEG.</p>
+    </div>
+
+    <div class="block">
+      <h4>M.Sc. Signal Processing and Machine Learning &mdash; Tampere University</h4>
+      <p class="meta">2023 &ndash; 2025 &middot; GPA 4.52 / 5.00 &middot; Tampere University scholarship</p>
+      <p>Thesis: <em>Hybrid ViViT&ndash;TimeSformer Transformer Architecture for Multimodal
+      Slip Detection in Robotic Manipulation</em> (grade 5/5).</p>
+    </div>
+
+    <div class="block">
+      <h4>B.Sc. Electronics and Communication Engineering &mdash; KUET</h4>
+      <p class="meta">2015 &ndash; 2019 &middot; GPA 3.62 / 4.00 &middot; Dean&rsquo;s Award, 2019</p>
+      <p>Thesis: <em>Classification of EEG Signals with Multi-input Convolutional Neural
+      Network by Augmenting STFT</em>.</p>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 Tanvir Hasan Shovon &middot; Hosted by GitHub Pages
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  // mobile menu
+  var menuBtn = document.getElementById('menuBtn');
+  var navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', function () {
+    var open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () { navLinks.classList.remove('open'); });
+  });
+
+  // dark mode
+  var root = document.documentElement;
+  var themeBtn = document.getElementById('themeBtn');
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    root.setAttribute('data-theme', 'dark');
+    themeBtn.innerHTML = '&#9788;';
+  }
+  themeBtn.addEventListener('click', function () {
+    var dark = root.getAttribute('data-theme') === 'dark';
+    root.setAttribute('data-theme', dark ? 'light' : 'dark');
+    themeBtn.innerHTML = dark ? '&#9789;' : '&#9788;';
+  });
+
+  // active section in nav
+  var links = Array.prototype.slice.call(navLinks.querySelectorAll('a'));
+  var sections = links
+    .map(function (a) { return document.querySelector(a.getAttribute('href')); })
+    .filter(Boolean);
+  if (!('IntersectionObserver' in window) || !sections.length) return;
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      links.forEach(function (a) {
+        a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id);
+      });
+    });
+  }, { rootMargin: '-15% 0px -70% 0px' });
+  sections.forEach(function (s) { obs.observe(s); });
+})();
+</script>
+
+</body>
+</html>
