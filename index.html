@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tanvir Hasan Shovon — Research</title>
+<meta name="description" content="Tanvir Hasan Shovon — Research Assistant at FAST-Lab, Tampere University. Efficient transformer inference, vision-language models, and visuo-tactile robotic manipulation.">
+
+<!-- TODO: replace with your real URL once deployed -->
+<meta property="og:title" content="Tanvir Hasan Shovon — Research">
+<meta property="og:description" content="Efficient transformer inference, vision-language models, and visuo-tactile robotic manipulation.">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper:#EDF1F3;
+  --ink:#101619;
+  --petrol:#123F4E;
+  --muted:#5A666D;
+  --rule:#C4CED4;
+  --rule-soft:#D9E0E4;
+  --brass:#A0742A;
+  --sans:"IBM Plex Sans Condensed",system-ui,sans-serif;
+  --serif:"Source Serif 4",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--serif);
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+
+a{color:var(--petrol);text-underline-offset:3px;text-decoration-thickness:1px;}
+a:hover{color:var(--brass);}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px;}
+
+.shell{
+  max-width:1180px;
+  margin:0 auto;
+  padding:0 28px;
+  display:grid;
+  grid-template-columns:264px minmax(0,1fr);
+  gap:64px;
+}
+
+/* ---------- left rail ---------- */
+.rail{
+  position:sticky;
+  top:0;
+  align-self:start;
+  height:100vh;
+  padding:56px 0 40px;
+  display:flex;
+  flex-direction:column;
+}
+.rail-name{
+  font-family:var(--sans);
+  font-weight:700;
+  font-size:1.5rem;
+  line-height:1.1;
+  letter-spacing:-.015em;
+  margin:0 0 14px;
+}
+.rail-role{
+  font-family:var(--mono);
+  font-size:.72rem;
+  line-height:1.7;
+  color:var(--muted);
+  letter-spacing:.02em;
+  margin:0 0 26px;
+}
+.rail-role strong{color:var(--ink);font-weight:500;}
+
+nav{border-top:1px solid var(--rule);padding-top:14px;}
+nav a{
+  display:block;
+  font-family:var(--mono);
+  font-size:.74rem;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:var(--muted);
+  text-decoration:none;
+  padding:5px 0 5px 18px;
+  position:relative;
+}
+nav a::before{
+  content:"";
+  position:absolute;
+  left:0;top:50%;
+  width:8px;height:1px;
+  background:var(--rule);
+  transition:width .18s ease,background .18s ease;
+}
+nav a:hover,nav a.on{color:var(--ink);}
+nav a:hover::before,nav a.on::before{width:12px;background:var(--brass);}
+
+.rail-foot{
+  margin-top:auto;
+  font-family:var(--mono);
+  font-size:.7rem;
+  color:var(--muted);
+  line-height:1.8;
+}
+.rail-foot a{text-decoration:none;display:block;}
+
+/* ---------- main ---------- */
+main{padding:56px 0 120px;min-width:0;}
+
+.eyebrow{
+  font-family:var(--mono);
+  font-size:.7rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--brass);
+  margin:0 0 20px;
+}
+
+/* hero */
+.thesis{
+  font-family:var(--sans);
+  font-weight:600;
+  font-size:clamp(1.75rem,3.6vw,2.6rem);
+  line-height:1.16;
+  letter-spacing:-.018em;
+  margin:0 0 26px;
+  max-width:20ch;
+}
+.thesis em{font-style:normal;color:var(--petrol);}
+.lede{max-width:62ch;margin:0 0 18px;}
+.lede + .lede{margin-bottom:34px;}
+
+.status{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-family:var(--mono);
+  font-size:.74rem;
+  letter-spacing:.06em;
+  color:var(--petrol);
+  border:1px solid var(--rule);
+  border-left:2px solid var(--brass);
+  background:rgba(255,255,255,.5);
+  padding:7px 14px;
+  margin-bottom:44px;
+}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--brass);flex:none;}
+
+/* signature: settling trace */
+.trace{
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  padding:18px 0 10px;
+  margin-bottom:72px;
+}
+.trace svg{display:block;width:100%;height:auto;}
+.trace-cap{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  font-family:var(--mono);
+  font-size:.68rem;
+  letter-spacing:.04em;
+  color:var(--muted);
+  margin-top:8px;
+}
+.draw{
+  stroke-dasharray:1400;
+  stroke-dashoffset:1400;
+  animation:draw 2.4s cubic-bezier(.6,.05,.3,1) .3s forwards;
+}
+@keyframes draw{to{stroke-dashoffset:0;}}
+@media (prefers-reduced-motion:reduce){
+  .draw{animation:none;stroke-dashoffset:0;}
+  html{scroll-behavior:auto;}
+}
+
+/* sections */
+section{margin-bottom:76px;scroll-margin-top:40px;}
+.sec-head{
+  display:flex;
+  align-items:baseline;
+  gap:14px;
+  border-bottom:1px solid var(--rule);
+  padding-bottom:10px;
+  margin-bottom:34px;
+}
+.sec-head h2{
+  font-family:var(--mono);
+  font-weight:500;
+  font-size:.74rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  margin:0;
+  color:var(--ink);
+}
+.sec-head span{
+  font-family:var(--mono);
+  font-size:.68rem;
+  color:var(--muted);
+  margin-left:auto;
+}
+
+/* entries */
+.entry{
+  padding:0 0 30px;
+  margin-bottom:30px;
+  border-bottom:1px solid var(--rule-soft);
+}
+.entry:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0;}
+.entry h3{
+  font-family:var(--sans);
+  font-weight:600;
+  font-size:1.3rem;
+  letter-spacing:-.01em;
+  line-height:1.25;
+  margin:0 0 4px;
+}
+.entry p{margin:0 0 14px;max-width:66ch;color:#1D262B;}
+.venue{
+  font-family:var(--mono);
+  font-size:.72rem;
+  color:var(--muted);
+  margin:0 0 12px;
+}
+
+.specs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+.spec{
+  font-family:var(--mono);
+  font-size:.68rem;
+  letter-spacing:.02em;
+  color:var(--petrol);
+  border:1px solid var(--rule);
+  padding:3px 8px;
+  white-space:nowrap;
+}
+.spec.hot{border-color:var(--brass);color:var(--brass);}
+
+/* publications */
+.pub{
+  display:grid;
+  grid-template-columns:78px minmax(0,1fr);
+  gap:20px;
+  padding-bottom:22px;
+  margin-bottom:22px;
+  border-bottom:1px solid var(--rule-soft);
+}
+.pub:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0;}
+.pub-year{
+  font-family:var(--mono);
+  font-size:.78rem;
+  color:var(--brass);
+  padding-top:3px;
+}
+.pub-title{
+  font-family:var(--sans);
+  font-weight:600;
+  font-size:1.08rem;
+  line-height:1.35;
+  margin:0 0 4px;
+}
+.pub-meta{font-family:var(--mono);font-size:.72rem;color:var(--muted);margin:0;}
+
+/* education */
+.edu{
+  display:grid;
+  grid-template-columns:78px minmax(0,1fr);
+  gap:20px;
+  padding-bottom:20px;
+  margin-bottom:20px;
+  border-bottom:1px solid var(--rule-soft);
+}
+.edu:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0;}
+.edu-when{font-family:var(--mono);font-size:.78rem;color:var(--brass);padding-top:3px;}
+.edu h3{font-family:var(--sans);font-weight:600;font-size:1.05rem;margin:0 0 2px;}
+.edu p{font-family:var(--mono);font-size:.74rem;color:var(--muted);margin:0;}
+
+/* contact */
+.contact-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:1px;
+  background:var(--rule);
+  border:1px solid var(--rule);
+}
+.contact-grid a{
+  background:var(--paper);
+  padding:18px 20px;
+  text-decoration:none;
+  display:block;
+}
+.contact-grid a:hover{background:#fff;}
+.contact-grid .k{
+  display:block;
+  font-family:var(--mono);
+  font-size:.66rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+.contact-grid .v{font-family:var(--sans);font-weight:600;font-size:1rem;color:var(--ink);}
+
+footer{
+  border-top:1px solid var(--rule);
+  padding-top:16px;
+  font-family:var(--mono);
+  font-size:.68rem;
+  color:var(--muted);
+}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .shell{grid-template-columns:1fr;gap:0;padding:0 22px;}
+  .rail{position:static;height:auto;padding:40px 0 0;}
+  .rail-foot{margin-top:22px;}
+  nav{display:flex;flex-wrap:wrap;gap:0 18px;}
+  nav a{padding-left:0;}
+  nav a::before{display:none;}
+  main{padding-top:36px;}
+  .thesis{max-width:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <aside class="rail">
+    <p class="rail-name">Tanvir Hasan<br>Shovon</p>
+    <p class="rail-role">
+      <strong>Research Assistant</strong><br>
+      FAST-Lab, Tampere University<br>
+      Tampere, Finland
+    </p>
+
+    <nav>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#background">Background</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="rail-foot">
+      <a href="mailto:tanvirshovon9@gmail.com">tanvirshovon9@gmail.com</a>
+      <a href="https://github.com/Hasanshovon">github.com/Hasanshovon</a>
+      <a href="https://www.linkedin.com/in/tanvir-hasan-shovon">linkedin/tanvir-hasan-shovon</a>
+      <!-- TODO: add cv.pdf to the repo root, then this link works -->
+      <a href="cv.pdf">Curriculum vitae ↗</a>
+    </div>
+  </aside>
+
+  <main>
+
+    <p class="eyebrow">Efficient inference · Vision-language · Robotic manipulation</p>
+
+    <h1 class="thesis">Making large models small enough to <em>run where the work happens.</em></h1>
+
+    <p class="lede">
+      I work on the cost side of modern deep learning: quantization and inference-time
+      strategies that let transformer models keep their accuracy at a fraction of the
+      compute — and on the perception systems that need exactly that, running in a
+      control loop on real hardware.
+    </p>
+    <p class="lede">
+      My background runs from EEG signal classification through computer vision to
+      language models, which is why efficiency is the thread I keep pulling: on a robot,
+      latency is not a benchmark column, it is whether the grasp succeeds.
+    </p>
+
+    <p class="status"><span class="dot"></span> Seeking a fully funded PhD position — Fall 2027 intake</p>
+
+    <!-- SIGNATURE: settling response of the closed-loop grasp corrector -->
+    <div class="trace" aria-hidden="true">
+      <svg viewBox="0 0 800 120" xmlns="http://www.w3.org/2000/svg" role="img">
+        <g stroke="#D9E0E4" stroke-width="1">
+          <line x1="0" y1="20" x2="800" y2="20"/>
+          <line x1="0" y1="60" x2="800" y2="60"/>
+          <line x1="0" y1="100" x2="800" y2="100"/>
+        </g>
+        <line x1="0" y1="38" x2="800" y2="38" stroke="#A0742A" stroke-width="1" stroke-dasharray="3 5" opacity=".7"/>
+        <path class="draw"
+              d="M0,100 L130,100 C180,100 208,46 252,28 C292,12 322,20 358,42 C388,60 412,56 442,46 C472,36 494,30 524,34 C566,40 610,38 800,38"
+              fill="none" stroke="#123F4E" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <p class="trace-cap">
+        <span>closed-loop grasp correction — settling to stable</span>
+        <span>13–15 ms / window</span>
+      </p>
+    </div>
+
+    <!-- ================= RESEARCH ================= -->
+    <section id="research">
+      <div class="sec-head">
+        <h2>Research</h2>
+        <span>4 active threads</span>
+      </div>
+
+      <article class="entry">
+        <h3>Visuo-tactile slip detection and closed-loop corrective grasping</h3>
+        <p class="venue">FAST-Lab, Tampere University · manuscript in preparation</p>
+        <p>
+          A four-class slip classifier (stable, translational, clockwise, anticlockwise)
+          running live on an ABB manipulator. Visual and tactile streams are encoded by
+          separate video transformer backbones and fused with multi-head attention; a
+          state machine turns each prediction into a graded grip correction and verifies
+          recovery before releasing the object. The interesting part is not the classifier
+          — it is what happens when you close the loop and the model has to be right
+          within a few milliseconds, repeatedly, on hardware that does not wait.
+        </p>
+        <div class="specs">
+          <span class="spec">ViViT + TimeSformer</span>
+          <span class="spec">MHA fusion</span>
+          <span class="spec">4-class</span>
+          <span class="spec">ABB + RealSense D405</span>
+          <span class="spec hot">13–15 ms/window</span>
+        </div>
+      </article>
+
+      <article class="entry">
+        <h3>Quantization of small open language models</h3>
+        <p class="venue">Benchmarking study · targeting IEEE conference submission</p>
+        <p>
+          A controlled comparison of post-training quantization methods — GPTQ, AWQ, and
+          sparse-quantized representations — across the Qwen and Llama small-model
+          families. Published numbers are rarely comparable across papers: different
+          calibration sets, different task suites, different hardware. The work builds a
+          single evaluation harness so the accuracy–latency–memory trade-off can actually
+          be read off, and looks at where outlier isolation stops paying for itself.
+        </p>
+        <div class="specs">
+          <span class="spec">GPTQ · AWQ · SpQR</span>
+          <span class="spec">Qwen / Llama</span>
+          <span class="spec">accuracy–latency–memory</span>
+        </div>
+      </article>
+
+      <article class="entry">
+        <h3>Inference-time strategies for small vision transformers</h3>
+        <p class="venue">Ongoing · survey and empirical study</p>
+        <p>
+          Token pruning, token merging, early exit, and resolution scaling applied to
+          DeiT-Small and ViT-Small backbones. The question is how far a small pretrained
+          model can be pushed at inference time before retraining a larger one becomes
+          the cheaper option — and whether these strategies compose, or quietly cancel
+          each other out.
+        </p>
+        <div class="specs">
+          <span class="spec">DeiT-S / ViT-S</span>
+          <span class="spec">token pruning &amp; merging</span>
+          <span class="spec">early exit</span>
+        </div>
+      </article>
+
+      <article class="entry">
+        <h3>Hallucination detection by neuro-symbolic verification</h3>
+        <p class="venue">Ongoing · evaluated on HaluEval</p>
+        <p>
+          Neural detectors flag hallucinated responses well on average and badly on the
+          minority class that matters. This work pairs a learned detector with an explicit
+          verification stage — claim extraction, symbolic checking against structured
+          knowledge — and asks whether the symbolic half earns its complexity, or whether
+          a single-pass distilled detector recovers most of it.
+        </p>
+        <div class="specs">
+          <span class="spec">HaluEval</span>
+          <span class="spec">claim extraction</span>
+          <span class="spec">knowledge-graph verification</span>
+        </div>
+      </article>
+    </section>
+
+    <!-- ================= PUBLICATIONS ================= -->
+    <section id="publications">
+      <div class="sec-head">
+        <h2>Publications</h2>
+        <span>peer-reviewed &amp; in preparation</span>
+      </div>
+
+      <!-- TODO: paste your exact ICAEE 2019 title, full author list and DOI/IEEE Xplore link -->
+      <div class="pub">
+        <div class="pub-year">2019</div>
+        <div>
+          <p class="pub-title">[ Exact ICAEE 2019 paper title — EEG signal classification ]</p>
+          <p class="pub-meta">
+            [Authors] · IEEE International Conference on Advances in Electrical Engineering (ICAEE) 2019
+            · <a href="#">DOI</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2026</div>
+        <div>
+          <p class="pub-title">Closed-loop slip-aware robotic grasping with visuo-tactile transformers</p>
+          <p class="pub-meta">Manuscript in preparation · FAST-Lab, Tampere University</p>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-year">2026</div>
+        <div>
+          <p class="pub-title">Benchmarking post-training quantization for small open language models</p>
+          <p class="pub-meta">In preparation · targeting IEEE conference</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= BACKGROUND ================= -->
+    <section id="background">
+      <div class="sec-head">
+        <h2>Background</h2>
+        <span>Tampere · Khulna</span>
+      </div>
+
+      <div class="edu">
+        <div class="edu-when">now</div>
+        <div>
+          <h3>Research Assistant — FAST-Lab</h3>
+          <p>Tampere University · with Prof. José Martínez Lastra</p>
+        </div>
+      </div>
+
+      <div class="edu">
+        <div class="edu-when">M.Sc.</div>
+        <div>
+          <h3>Signal Processing and Machine Learning</h3>
+          <p>Tampere University, Finland</p>
+        </div>
+      </div>
+
+      <div class="edu">
+        <div class="edu-when">B.Sc.</div>
+        <div>
+          <h3>Electronics and Communication Engineering</h3>
+          <p>Khulna University of Engineering &amp; Technology (KUET), Bangladesh</p>
+        </div>
+      </div>
+
+      <div class="edu">
+        <div class="edu-when">tools</div>
+        <div>
+          <h3>Day to day</h3>
+          <p>PyTorch · TensorFlow · OpenCV · CUDA · Docker · C++ · Python</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section id="contact">
+      <div class="sec-head">
+        <h2>Contact</h2>
+        <span>open to PhD supervision enquiries</span>
+      </div>
+
+      <div class="contact-grid">
+        <a href="mailto:tanvirshovon9@gmail.com">
+          <span class="k">Email</span>
+          <span class="v">tanvirshovon9@gmail.com</span>
+        </a>
+        <a href="https://github.com/Hasanshovon">
+          <span class="k">Code</span>
+          <span class="v">GitHub</span>
+        </a>
+        <a href="https://www.linkedin.com/in/tanvir-hasan-shovon">
+          <span class="k">Profile</span>
+          <span class="v">LinkedIn</span>
+        </a>
+        <!-- TODO: create a Google Scholar profile and drop the link in -->
+        <a href="#">
+          <span class="k">Papers</span>
+          <span class="v">Google Scholar</span>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      Tampere, Finland · last updated August 2026
+    </footer>
+
+  </main>
+</div>
+
+<script>
+// mark the section currently in view in the rail nav
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav a'));
+  var sections = links
+    .map(function (a) { return document.querySelector(a.getAttribute('href')); })
+    .filter(Boolean);
+
+  if (!('IntersectionObserver' in window) || !sections.length) return;
+
+  var obs = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      links.forEach(function (a) {
+        a.classList.toggle('on', a.getAttribute('href') === '#' + e.target.id);
+      });
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(function (s) { obs.observe(s); });
+})();
+</script>
+
+</body>
+</html>
